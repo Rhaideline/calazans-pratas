@@ -12,7 +12,7 @@ export type Produto = {
   precoOriginal?: number;
   estoque: number;
   sku: string;
-  destaque: boolean;
+  destaque?: boolean;
   bestSeller?: boolean;
   novidade?: boolean;
   descricaoCurta: string;
