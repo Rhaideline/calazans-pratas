@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const MEGA = [
@@ -76,6 +77,14 @@ const MEGA = [
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
+  const pathname = usePathname();
+
+  function isActiveLink(href: string) {
+    if (!href) return false;
+    const path = href.split("?")[0];
+    if (path === "/") return pathname === "/";
+    return pathname === path || pathname.startsWith(path + "/");
+  }
 
   return (
     <header className="sticky top-0 z-40 bg-[var(--color-cream-paper)]/96 backdrop-blur border-b border-[var(--color-muted)]/15">
@@ -152,7 +161,12 @@ export default function Header() {
                 ) : (
                   <Link
                     href={item.href!}
-                    className="text-[12px] font-bold tracking-[0.32em] uppercase text-[var(--color-ink)] hover:text-[var(--color-gold-dark)]"
+                    aria-current={isActiveLink(item.href!) ? "page" : undefined}
+                    className={`text-[12px] font-bold tracking-[0.32em] uppercase hover:text-[var(--color-gold-dark)] ${
+                      isActiveLink(item.href!)
+                        ? "text-[var(--color-gold-dark)] border-b-2 border-[var(--color-gold)]"
+                        : "text-[var(--color-ink)]"
+                    }`}
                   >
                     {item.label}
                   </Link>

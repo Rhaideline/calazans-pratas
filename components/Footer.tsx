@@ -13,17 +13,20 @@ export default function Footer() {
             </h3>
           </div>
           <form action="/api/newsletter" method="post" className="flex flex-col sm:flex-row gap-2">
+            <label htmlFor="footer-newsletter-email" className="sr-only">Email para receber novidades</label>
             <input
+              id="footer-newsletter-email"
               type="email"
               name="email"
               required
-              aria-label="Email"
+              autoComplete="email"
+              inputMode="email"
               placeholder="Seu email"
               className="flex-1 bg-transparent border border-[var(--color-gold-dark)]/50 px-5 py-3.5 text-[14px] outline-none focus:border-[var(--color-gold)] placeholder:text-[var(--color-cream)]/40"
             />
             <button
               type="submit"
-              className="bg-[var(--color-gold)] hover:bg-[var(--color-gold-light)] text-[var(--color-bg-deep)] px-7 py-3.5 text-[11px] font-extrabold tracking-[0.32em] uppercase"
+              className="bg-[var(--color-gold)] hover:bg-[var(--color-gold-light)] text-[var(--color-bg-deep)] px-7 py-3.5 text-[11px] font-extrabold tracking-[0.32em] uppercase min-h-[44px]"
             >
               Quero 10%
             </button>

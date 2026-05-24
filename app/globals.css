@@ -16,6 +16,10 @@
   --font-mono: var(--font-jetbrains), "JetBrains Mono", "Fira Code", monospace;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html, body {
   background: var(--color-cream-paper);
   color: var(--color-ink);
@@ -23,6 +27,38 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "ss01", "cv11";
+  /* fallback font enquanto Playfair/Inter carregam — evita layout shift */
+  font-size: 16px;
+}
+
+/* Respeitar preferência de motion do usuário (a11y) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Skip to main content (a11y) — fica oculto até ganhar foco */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg-deep);
+  color: var(--color-gold);
+  padding: 12px 18px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
 }
 
 * {
