@@ -79,24 +79,33 @@ export default async function ColecaoPage({ searchParams }: { searchParams: Prom
               </Link>
             ))}
           </div>
-          <form className="flex items-center gap-2 self-end md:self-auto" method="GET" action="/colecao">
-            {cat !== "all" && <input type="hidden" name="cat" value={cat} />}
-            <label htmlFor="ordem" className="text-[11px] font-bold tracking-[0.28em] uppercase text-[var(--color-muted)]">
-              Ordenar
-            </label>
-            <select
-              name="ordem"
-              defaultValue={ordem}
-              onChange={(e) => e.currentTarget.form?.submit()}
-              id="ordem"
-              className="text-[12px] tracking-[0.15em] uppercase border border-[var(--color-muted)]/30 bg-transparent px-3 py-2 outline-none focus:border-[var(--color-gold)]"
-            >
-              <option value="destaque">Destaques</option>
-              <option value="menor-preco">Menor preço</option>
-              <option value="maior-preco">Maior preço</option>
-              <option value="novidades">Novidades</option>
-            </select>
-          </form>
+          <div className="flex items-center gap-2 self-end md:self-auto text-[11px] font-bold tracking-[0.28em] uppercase">
+            <span className="text-[var(--color-muted)]">Ordenar</span>
+            {[
+              { v: "destaque", l: "Destaques" },
+              { v: "menor-preco", l: "Menor" },
+              { v: "maior-preco", l: "Maior" },
+              { v: "novidades", l: "Novidades" },
+            ].map((o) => {
+              const params = new URLSearchParams();
+              if (cat !== "all") params.set("cat", cat);
+              if (o.v !== "destaque") params.set("ordem", o.v);
+              const qs = params.toString();
+              return (
+                <Link
+                  key={o.v}
+                  href={`/colecao${qs ? `?${qs}` : ""}`}
+                  className={`px-2.5 py-1.5 border ${
+                    ordem === o.v
+                      ? "border-[var(--color-gold)] text-[var(--color-ink)]"
+                      : "border-transparent text-[var(--color-muted)] hover:text-[var(--color-ink)]"
+                  }`}
+                >
+                  {o.l}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </section>
 
