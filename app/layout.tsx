@@ -50,13 +50,37 @@ export const metadata: Metadata = {
 
 const orgSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "OnlineStore",
   name: "Calazans Pratas",
+  legalName: "Calazans Pratas Joias",
   url: "https://calazanspratas.com.br",
-  description: "Joias em prata 925 com moissanite certificada.",
+  logo: "https://calazanspratas.com.br/logo.png",
+  description: "E-commerce de joias em prata 925 com moissanite certificada — anéis, colares, brincos, pulseiras e conjuntos bridal. Brilho do diamante a 1/10 do preço.",
+  slogan: "A elegância do diamante. Sem o preço do diamante.",
+  email: "atendimento@calazanspratas.com.br",
+  telephone: "+55-31-98658-9584",
+  areaServed: ["BR", "US"],
+  currenciesAccepted: "BRL",
+  paymentAccepted: ["Credit Card", "PIX", "Bank Transfer"],
   sameAs: [
-    "https://instagram.com/calazanslumina",
+    "https://instagram.com/calazanspratas",
+    "https://tiktok.com/@calazanspratas",
+    "https://pinterest.com/calazanspratas",
   ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+55-31-98658-9584",
+    contactType: "customer service",
+    areaServed: ["BR", "US"],
+    availableLanguage: ["Portuguese", "English"],
+    contactOption: "TollFree",
+    hoursAvailable: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
+  },
 };
 
 const websiteSchema = {
