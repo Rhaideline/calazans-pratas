@@ -115,7 +115,7 @@ export default async function ColecaoPage({ searchParams }: { searchParams: Prom
           {lista.length === 0 ? (
             <p className="text-center py-20 text-[var(--color-muted)]">Nenhum produto nesta categoria por enquanto.</p>
           ) : (
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-7">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-7 cv-auto">
               {lista.map((p, i) => (
                 <ProductCard key={p.slug} p={p} priority={i < 4} />
               ))}

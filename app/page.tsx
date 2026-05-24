@@ -1,8 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { getBestSellers, getNovidades, produtos } from "@/data/produtos";
 import ProductCard from "@/components/ProductCard";
-import HeroCarousel from "@/components/HeroCarousel";
+
+// Dynamic import — HeroCarousel é client-side com useState/useEffect, sai do bundle initial
+// (react-performance.csv rule #7: dynamic() for heavy components)
+const HeroCarousel = dynamic(() => import("@/components/HeroCarousel"), {
+  loading: () => <div className="bg-[var(--color-bg-deep)] h-[640px] md:h-[720px] lg:h-[760px]" aria-hidden />,
+});
 
 export default function Home() {
   const bestSellers = getBestSellers().slice(0, 8);
@@ -37,7 +43,7 @@ export default function Home() {
               <Link
                 key={c.slug}
                 href={`/colecao?cat=${c.slug}`}
-                className={`group relative overflow-hidden bg-[var(--color-bg-card)] ${c.span}`}
+                className={`group relative overflow-hidden bg-[var(--color-bg-card)] luxury-card sheen-on-hover ${c.span}`}
               >
                 <Image
                   src={c.img}

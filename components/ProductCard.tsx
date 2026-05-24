@@ -6,8 +6,8 @@ import { formatBRL } from "@/lib/formatters";
 export default function ProductCard({ p, priority = false }: { p: Produto; priority?: boolean }) {
   const off = p.precoOriginal ? Math.round((1 - p.preco / p.precoOriginal) * 100) : 0;
   return (
-    <Link href={`/produto/${p.slug}`} className="group block">
-      <div className="relative aspect-[4/5] overflow-hidden bg-[var(--color-bg-card)] rounded-sm">
+    <Link href={`/produto/${p.slug}`} className="group block luxury-card">
+      <div className="relative aspect-[4/5] overflow-hidden bg-[var(--color-bg-card)] rounded-sm sheen-on-hover">
         <Image
           src={p.fotos[0]}
           alt={p.nome}
